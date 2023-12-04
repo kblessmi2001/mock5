@@ -3,9 +3,9 @@ const mongoose = require("mongoose")
 const userSchema = mongoose.Schema({
     name: String,
     email: String,
-    phone: Number,
+    phone: String,
     label: String,
-    booked_slots: [String]
+    booked_slots: Array
 
 },
     {
