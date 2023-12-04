@@ -11,6 +11,10 @@ app.use(cors({origin:'*'}));
 app.get("/",async(req,res)=>{
     try {
         const query = req.query
+        if (query.name) {
+            const nameRegex = new RegExp(query.name, 'i');
+            query.name = nameRegex;
+          }
         const contacts = await UserModel.find(query)
         res.status(200).json(contacts)
     } catch (error) {
@@ -55,7 +59,7 @@ app.delete("/contacts/delete/:id",async(req,res)=>{
     }
 })
 
-app.listen(8080,async()=>{
+app.listen(8081,async()=>{
     try {
         await connection;
         console.log("DB is connected")
